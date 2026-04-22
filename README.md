@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Jumarf123/RSS-Registry/releases/download/2.0/rss_registry.exe">
+  <a href="https://github.com/Jumarf123/RSS-Registry/releases/download/2.0/RSS-Registry.exe">
     <img alt="Download RSS-Registry" src="https://img.shields.io/badge/Скачать%20%2F%20Download-RSS--Registry.exe-2ea043?style=for-the-badge&logo=github&logoColor=white" />
   </a>
 </p>
@@ -83,7 +83,7 @@ rss_registry.exe
 ### Скачать
 
 * **Download:**
-  [https://github.com/Jumarf123/RSS-Registry/releases/download/2.0/rss_registry.exe](https://github.com/Jumarf123/RSS-Registry/releases/download/2.0/rss_registry.exe)
+  [https://github.com/Jumarf123/RSS-Registry/releases/download/2.0/RSS-Registry.exe](https://github.com/Jumarf123/RSS-Registry/releases/download/2.0/RSS-Registry.exe)
 
 ---
 
@@ -145,7 +145,7 @@ The application is ready to use immediately after launch.
 ### Download
 
 * **Download:**
-  [https://github.com/Jumarf123/RSS-Registry/releases/download/2.0/rss_registry.exe](https://github.com/Jumarf123/RSS-Registry/releases/download/2.0/rss_registry.exe)
+  [https://github.com/Jumarf123/RSS-Registry/releases/download/2.0/RSS-Registry.exe](https://github.com/Jumarf123/RSS-Registry/releases/download/2.0/RSS-Registry.exe)
 
 ---
 
