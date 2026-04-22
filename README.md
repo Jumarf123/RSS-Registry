@@ -89,7 +89,7 @@ rss_registry.exe
 
 ### Discord
 
-(оставь свою ссылку здесь)
+https://discord.gg/residencescreenshare
 
 ---
 
@@ -151,12 +151,4 @@ The application is ready to use immediately after launch.
 
 ### Discord
 
-
-
----
-
-Если хочешь — могу ещё:
-
-* добавить **скриншоты (как у тебя в AmCache)**
-* сделать более «киберпанковый» стиль 😄
-* или оформить под **Open Source project (с лицензией, roadmap, badges CI и т.д.)**
+https://discord.gg/residencescreenshare
