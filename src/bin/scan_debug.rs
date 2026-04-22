@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use rss_registry::model::{all_sources, SourceKind};
+use rss_registry::model::{SourceKind, all_sources};
 use rss_registry::sources::{self, SourceContext};
 use rss_registry::time;
 use std::time::Instant;
@@ -21,7 +21,15 @@ fn main() {
             dur
         );
         for rec in data.iter().take(10) {
-            println!("    {} | {} | deleted={} | exec={}", rec.file_name, rec.path, rec.deleted, rec.executed_at.map(|d| crate::time::format_datetime(&d)).unwrap_or_else(|| "-".to_string()));
+            println!(
+                "    {} | {} | deleted={} | exec={}",
+                rec.file_name,
+                rec.path,
+                rec.deleted,
+                rec.executed_at
+                    .map(|d| crate::time::format_datetime(&d))
+                    .unwrap_or_else(|| "-".to_string())
+            );
         }
     }
 

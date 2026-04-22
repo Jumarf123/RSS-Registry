@@ -1,7 +1,7 @@
+use super::SourceContext;
 use crate::model::{Record, SourceKind};
 use crate::path_extract::extract_paths;
 use crate::registry;
-use super::SourceContext;
 
 const HKCU_KEYS: [&str; 2] = [
     r"Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers",

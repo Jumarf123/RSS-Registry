@@ -1,8 +1,8 @@
+use super::SourceContext;
 use crate::model::{Record, SourceKind};
 use crate::path_extract::{extract_paths, extract_paths_from_bytes};
-use crate::sources::util::find_best_filetime;
 use crate::registry;
-use super::SourceContext;
+use crate::sources::util::find_best_filetime;
 
 const PATHS: [&str; 2] = [
     r"Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store",

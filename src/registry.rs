@@ -1,15 +1,15 @@
-use anyhow::{anyhow, Context, Result};
-use std::io;
+use anyhow::{Context, Result, anyhow};
 use std::ffi::c_void;
+use std::io;
 
-use winreg::enums::{RegType, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, KEY_READ};
-use winreg::{RegKey, HKEY};
+use winreg::enums::{HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, KEY_READ, RegType};
+use winreg::{HKEY, RegKey};
 
-use windows::core::PWSTR;
 use windows::Win32::Foundation::{HLOCAL, LocalFree};
-use windows::Win32::Security::{GetTokenInformation, TokenUser, TOKEN_QUERY, TOKEN_USER};
 use windows::Win32::Security::Authorization::ConvertSidToStringSidW;
+use windows::Win32::Security::{GetTokenInformation, TOKEN_QUERY, TOKEN_USER, TokenUser};
 use windows::Win32::System::Threading::{GetCurrentProcess, OpenProcessToken};
+use windows::core::PWSTR;
 
 pub fn open_hkcu(path: &str) -> Option<RegKey> {
     open_key(HKEY_CURRENT_USER, path)
@@ -107,13 +107,7 @@ pub fn current_user_sid_string() -> Result<String> {
             .context("OpenProcessToken failed")?;
 
         let mut len: u32 = 0;
-        let _ = GetTokenInformation(
-            token,
-            TokenUser,
-            None,
-            0,
-            &mut len,
-        );
+        let _ = GetTokenInformation(token, TokenUser, None, 0, &mut len);
         if len == 0 {
             return Err(anyhow!("GetTokenInformation returned zero length"));
         }

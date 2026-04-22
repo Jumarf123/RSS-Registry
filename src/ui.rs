@@ -72,7 +72,10 @@ impl RegistryApp {
         let mut style = (*ctx.style()).clone();
         style.spacing.item_spacing = egui::vec2(8.0, 6.0);
         style.spacing.button_padding = egui::vec2(10.0, 6.0);
-        style.text_styles.insert(TextStyle::Heading, egui::FontId::new(22.0, egui::FontFamily::Proportional));
+        style.text_styles.insert(
+            TextStyle::Heading,
+            egui::FontId::new(22.0, egui::FontFamily::Proportional),
+        );
         ctx.set_style(style);
         self.style_applied = true;
     }
@@ -166,7 +169,8 @@ impl RegistryApp {
                 if query.is_empty() {
                     true
                 } else {
-                    rec.file_name.to_lowercase().contains(&query) || rec.path.to_lowercase().contains(&query)
+                    rec.file_name.to_lowercase().contains(&query)
+                        || rec.path.to_lowercase().contains(&query)
                 }
             })
             .cloned()
@@ -240,7 +244,7 @@ impl RegistryApp {
         egui::TopBottomPanel::top("top_bar").show(ctx, |ui| {
             ui.add_space(4.0);
             ui.horizontal(|ui| {
-                ui.heading("RSS Registry Viewer");
+                ui.heading("RSS-Registry");
                 ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
                     let search = egui::TextEdit::singleline(&mut self.search_query)
                         .hint_text("Search...")
@@ -280,6 +284,7 @@ impl RegistryApp {
                 ui.checkbox(&mut self.filters.rar, ".rar");
                 ui.checkbox(&mut self.filters.zip, ".zip");
                 ui.checkbox(&mut self.filters.bat, ".bat");
+                ui.checkbox(&mut self.filters.nfp, "NFP");
             });
             ui.add_space(4.0);
         });
@@ -303,7 +308,11 @@ impl RegistryApp {
             .header(row_height, |mut header| {
                 header.col(|ui| {
                     if ui
-                        .add(egui::Label::new(" File").sense(Sense::click()).truncate(true))
+                        .add(
+                            egui::Label::new(" File")
+                                .sense(Sense::click())
+                                .truncate(true),
+                        )
                         .clicked()
                     {
                         self.toggle_sort(SortColumn::File);
@@ -311,7 +320,11 @@ impl RegistryApp {
                 });
                 header.col(|ui| {
                     if ui
-                        .add(egui::Label::new("Path").sense(Sense::click()).truncate(true))
+                        .add(
+                            egui::Label::new("Path")
+                                .sense(Sense::click())
+                                .truncate(true),
+                        )
                         .clicked()
                     {
                         self.toggle_sort(SortColumn::Path);
@@ -319,7 +332,11 @@ impl RegistryApp {
                 });
                 header.col(|ui| {
                     if ui
-                        .add(egui::Label::new("Date").sense(Sense::click()).truncate(true))
+                        .add(
+                            egui::Label::new("Date")
+                                .sense(Sense::click())
+                                .truncate(true),
+                        )
                         .clicked()
                     {
                         self.toggle_sort(SortColumn::Date);
@@ -327,7 +344,11 @@ impl RegistryApp {
                 });
                 header.col(|ui| {
                     if ui
-                        .add(egui::Label::new("Deleted").sense(Sense::click()).truncate(true))
+                        .add(
+                            egui::Label::new("Deleted")
+                                .sense(Sense::click())
+                                .truncate(true),
+                        )
                         .clicked()
                     {
                         self.toggle_sort(SortColumn::Deleted);

@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use crate::model::{dedup_records, Record, SourceKind};
+use crate::model::{Record, SourceKind, dedup_records};
 use crate::registry;
 
 pub mod appcompat_flags;
@@ -16,8 +16,8 @@ pub mod shimcache;
 pub mod startup;
 pub mod typedpaths;
 pub mod userassist;
-pub mod winrar;
 pub mod util;
+pub mod winrar;
 
 pub struct SourceContext {
     pub user_sid: Option<String>,

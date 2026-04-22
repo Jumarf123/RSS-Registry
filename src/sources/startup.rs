@@ -1,7 +1,7 @@
+use super::SourceContext;
 use crate::model::{Record, SourceKind};
 use crate::path_extract::{extract_paths, extract_paths_from_bytes};
 use crate::registry;
-use super::SourceContext;
 
 const HKCU_KEYS: [&str; 3] = [
     r"Software\Microsoft\Windows\CurrentVersion\Run",

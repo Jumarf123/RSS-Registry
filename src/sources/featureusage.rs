@@ -1,8 +1,8 @@
+use super::SourceContext;
 use crate::model::{Record, SourceKind};
 use crate::path_extract::{extract_paths, extract_paths_from_bytes};
-use crate::time::filetime_to_datetime_local;
 use crate::registry;
-use super::SourceContext;
+use crate::time::filetime_to_datetime_local;
 
 const PATHS: [&str; 2] = [
     r"Software\Microsoft\Windows\CurrentVersion\Explorer\FeatureUsage\AppLaunch",
@@ -18,15 +18,27 @@ pub fn scan(_ctx: &SourceContext) -> Vec<Record> {
                 let executed_at = parse_timestamp(&value.bytes);
                 let mut added = false;
                 for path in extract_paths(&name) {
-                    results.push(Record::from_path(&path, executed_at, SourceKind::FeatureUsage));
+                    results.push(Record::from_path(
+                        &path,
+                        executed_at,
+                        SourceKind::FeatureUsage,
+                    ));
                     added = true;
                 }
                 for path in extract_paths_from_bytes(&value.bytes) {
-                    results.push(Record::from_path(&path, executed_at, SourceKind::FeatureUsage));
+                    results.push(Record::from_path(
+                        &path,
+                        executed_at,
+                        SourceKind::FeatureUsage,
+                    ));
                     added = true;
                 }
                 if !added && has_allowed_extension(&name) {
-                    results.push(Record::from_path(&name, executed_at, SourceKind::FeatureUsage));
+                    results.push(Record::from_path(
+                        &name,
+                        executed_at,
+                        SourceKind::FeatureUsage,
+                    ));
                 }
             }
         }

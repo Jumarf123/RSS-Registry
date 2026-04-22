@@ -1,7 +1,7 @@
+use super::SourceContext;
 use crate::model::{Record, SourceKind};
 use crate::path_extract::extract_paths;
 use crate::registry;
-use super::SourceContext;
 
 const PATHS: [&str; 2] = [
     r"Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\MuiCache",

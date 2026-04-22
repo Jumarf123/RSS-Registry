@@ -1,10 +1,10 @@
+use super::SourceContext;
 use crate::model::{Record, SourceKind};
 use crate::path_extract::{
     extract_allowed_names, extract_paths, extract_paths_from_bytes, has_allowed_extension,
     normalize_path_candidate,
 };
 use crate::registry;
-use super::SourceContext;
 
 const ROOT: &str = r"Software\7-Zip";
 

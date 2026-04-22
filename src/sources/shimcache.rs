@@ -1,9 +1,9 @@
 use std::collections::HashSet;
 
+use super::SourceContext;
 use crate::model::{Record, SourceKind};
 use crate::path_extract::extract_paths_from_bytes;
 use crate::sources::util::find_best_filetime;
-use super::SourceContext;
 
 const KEY_PATH: &str = r"SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatCache";
 

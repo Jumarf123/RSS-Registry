@@ -1,7 +1,9 @@
-use crate::model::{Record, SourceKind};
-use crate::path_extract::{extract_allowed_names, extract_paths, extract_paths_from_bytes, has_allowed_extension};
-use crate::registry;
 use super::SourceContext;
+use crate::model::{Record, SourceKind};
+use crate::path_extract::{
+    extract_allowed_names, extract_paths, extract_paths_from_bytes, has_allowed_extension,
+};
+use crate::registry;
 
 pub fn scan(_ctx: &SourceContext) -> Vec<Record> {
     let mut results = Vec::new();

@@ -1,6 +1,6 @@
+use super::SourceContext;
 use crate::model::{Record, SourceKind};
 use crate::path_extract::{extract_allowed_names, extract_paths, extract_paths_from_bytes};
-use super::SourceContext;
 
 const ROOT: &str = r"Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs";
 

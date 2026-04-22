@@ -1,8 +1,8 @@
+use super::SourceContext;
 use crate::model::{Record, SourceKind};
 use crate::path_extract::extract_paths;
-use crate::time::filetime_to_datetime_local;
 use crate::registry;
-use super::SourceContext;
+use crate::time::filetime_to_datetime_local;
 
 pub fn scan(_ctx: &SourceContext) -> Vec<Record> {
     let mut results = Vec::new();
@@ -26,7 +26,11 @@ fn collect_count_key(key: &winreg::RegKey, results: &mut Vec<Record>) {
         let decoded = rot13(&name);
         let executed_at = parse_last_exec(&value.bytes);
         for path in extract_paths(&decoded) {
-            results.push(Record::from_path(&path, executed_at, SourceKind::UserAssist));
+            results.push(Record::from_path(
+                &path,
+                executed_at,
+                SourceKind::UserAssist,
+            ));
         }
     }
 }

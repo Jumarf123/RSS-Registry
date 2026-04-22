@@ -2,6 +2,7 @@ use chrono::{DateTime, Local};
 use std::collections::{HashMap, HashSet};
 use std::path::Path;
 
+use crate::path_extract;
 use crate::time;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -137,11 +138,11 @@ pub fn dedup_records(records: Vec<Record>) -> Vec<Record> {
 }
 
 pub fn normalize_path(path: &str) -> String {
-    let mut p = path.trim_matches(char::from(0)).trim().replace('/', "\\");
-    if let Some(stripped) = p.strip_prefix(r"\\??\\") {
-        p = stripped.to_string();
-    }
-    p
+    path_extract::normalize_path(path)
+}
+
+pub fn is_not_found_path(path: &str) -> bool {
+    !path_extract::has_path_location(path)
 }
 
 #[derive(Debug, Clone)]
@@ -152,6 +153,7 @@ pub struct ExtensionFilters {
     pub rar: bool,
     pub zip: bool,
     pub bat: bool,
+    pub nfp: bool,
 }
 
 impl ExtensionFilters {
@@ -163,10 +165,15 @@ impl ExtensionFilters {
             rar: true,
             zip: true,
             bat: true,
+            nfp: true,
         }
     }
 
     pub fn is_allowed(&self, path: &str) -> bool {
+        if is_not_found_path(path) && !self.nfp {
+            return false;
+        }
+
         let lower = path.to_lowercase();
         if lower.ends_with(".exe") {
             return self.exe;
@@ -188,5 +195,21 @@ impl ExtensionFilters {
         }
         // .cmd and .ps1 are always allowed (no toggle).
         lower.ends_with(".cmd") || lower.ends_with(".ps1")
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn nfp_filter_controls_paths_without_locations() {
+        let mut filters = ExtensionFilters::new();
+        assert!(filters.is_allowed("123.rar"));
+        assert!(filters.is_allowed(r"C:\Temp\123.rar"));
+
+        filters.nfp = false;
+        assert!(!filters.is_allowed("123.rar"));
+        assert!(filters.is_allowed(r"C:\Temp\123.rar"));
     }
 }

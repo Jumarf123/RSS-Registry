@@ -24,7 +24,7 @@ fn main() -> eframe::Result<()> {
         ..Default::default()
     };
     eframe::run_native(
-        "RSS Registry Viewer",
+        "RSS-Registry",
         options,
         Box::new(|_cc| Box::new(ui::RegistryApp::new())),
     )
